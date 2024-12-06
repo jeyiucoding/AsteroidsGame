@@ -44,23 +44,23 @@ public void draw(){
   text("myPointDirection: " + (float)(bob.getmyPointDirection()), 20,110);
   for(int i = 0; i < a.size(); i++){
     
-   if(a.get(i).getShow() == true){
-      a.get(i).show();
-      a.get(i).move();
-     
-   }
-    int randomNum = (int)(Math.random()*2);
-    double add = (double)(Math.random()*3)-1.5;
-    double subtract = -1*(double)(Math.random()*3)-1.5;
-    if(randomNum == 0){
-      a.get(i).setrotSpeed(add);
-    }
-    if(randomNum == 1){
-      a.get(i).setrotSpeed(subtract);
-    }
+  
     if(dist((float)(a.get(i).myCenterX), (float)(a.get(i).myCenterY), (float)(bob.myCenterX), (float)(bob.myCenterY)) <= 20){
-        a.get(i).setShow(false);
+        a.remove(i);
       }
+     else{
+       a.get(i).show();
+       a.get(i).move();
+       int randomNum = (int)(Math.random()*2);
+        double add = (double)(Math.random()*3)-1.5;
+        double subtract = -1*(double)(Math.random()*3)-1.5;
+        if(randomNum == 0){
+          a.get(i).setrotSpeed(add);
+        }
+        if(randomNum == 1){
+          a.get(i).setrotSpeed(subtract);
+        }
+     }
   }
 
 }
