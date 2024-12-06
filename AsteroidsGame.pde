@@ -5,6 +5,7 @@ boolean wIsPressed = false;
 boolean aIsPressed = false;
 boolean dIsPressed = false;
 boolean eIsPressed = false;
+
 public void setup(){
   size(500,500);
   bob = new Spaceship();
@@ -43,8 +44,11 @@ public void draw(){
   text("myPointDirection: " + (float)(bob.getmyPointDirection()), 20,110);
   for(int i = 0; i < a.size(); i++){
     
-   
-    a.get(i).show();
+   if(a.get(i).getShow() == true){
+      a.get(i).show();
+      a.get(i).move();
+     
+   }
     int randomNum = (int)(Math.random()*2);
     double add = (double)(Math.random()*3)-1.5;
     double subtract = -1*(double)(Math.random()*3)-1.5;
@@ -54,7 +58,9 @@ public void draw(){
     if(randomNum == 1){
       a.get(i).setrotSpeed(subtract);
     }
-    a.get(i).move();
+    if(dist((float)(a.get(i).myCenterX), (float)(a.get(i).myCenterY), (float)(bob.myCenterX), (float)(bob.myCenterY)) <= 20){
+        a.get(i).setShow(false);
+      }
   }
 
 }
