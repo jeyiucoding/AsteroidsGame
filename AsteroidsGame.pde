@@ -42,7 +42,7 @@ public void draw(){
   text("myXspeed: " + (float)(bob.getmyXspeed()), 20,70);
   text("myYspeed: " + (float)(bob.getmyYspeed()), 20,90);
   text("myPointDirection: " + (float)(bob.getmyPointDirection()), 20,110);
-  for(int i = 0; i < a.size(); i++){
+  for(int i = a.size(); i >= 0; i--){
     
   
     if(dist((float)(a.get(i).myCenterX), (float)(a.get(i).myCenterY), (float)(bob.myCenterX), (float)(bob.myCenterY)) <= 20){
