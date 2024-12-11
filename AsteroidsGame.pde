@@ -1,6 +1,7 @@
 Star[] space = new Star[200];
 Spaceship bob;
 ArrayList<Asteroid> a;
+ArrayList<Bullet> b = new ArrayList<Bullet>();
 boolean wIsPressed = false;
 boolean aIsPressed = false;
 boolean dIsPressed = false;
@@ -62,7 +63,16 @@ public void draw(){
         }
      }
   }
-
+  for(int i = b.size()-1; i>= 0; i--){
+    b.get(i).show();
+    b.get(i).move();
+    for(int j = a.size()-1; j >= 0; j--)
+      if(dist((float)(b.get(i).myCenterX),(float)(b.get(i).myCenterY), (float)(a.get(j).myCenterX), (float)(a.get(j).myCenterY)) <=20){
+        b.remove(i);
+        a.remove(j);
+        break;
+    }
+  }
 }
 public void keyPressed() {
     if (key == 'w') {
@@ -102,8 +112,10 @@ public void keyReleased() {
   else if (key == 'd') {
     dIsPressed = false;
   }
-  if (key == 'e') {
+  else if (key == 'e') {
         eIsPressed = false;
-       
     }
+  else if(key == ' '){
+    b.add(new Bullet(bob));
+  }
 }
